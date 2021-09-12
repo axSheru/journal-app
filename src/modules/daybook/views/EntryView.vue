@@ -20,7 +20,9 @@
   <div class="d-flex flex-column px-3 h-75">
       <textarea placeholder="¿Qué sucedió hoy?"></textarea>
   </div>
-  <Fab />
+  <Fab 
+    icon="fa-save"
+  />
   <img
     src="https://static1.abc.es/media/play/2020/12/22/mandalorian-kKfB--1200x630@abc.jpg"
     alt="entry-picture"
