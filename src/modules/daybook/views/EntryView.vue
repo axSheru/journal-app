@@ -78,6 +78,11 @@ export default {
     },
     created() {
         this.loadEntry()
+    },
+    watch: {
+        id() {
+            this.loadEntry()
+        }
     }
 }
 </script>
