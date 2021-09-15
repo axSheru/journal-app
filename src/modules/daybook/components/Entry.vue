@@ -11,7 +11,7 @@
       </div>
 
       <div class="entry-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt, possimus molestiae. Eius asperiores ex veniam! Magni, facilis tempora molestias modi temporibus perspiciatis expedita nesciunt, cumque nam placeat deleniti! Veniam, a.
+          {{ shortText }}
       </div>
   </div>
 </template>
@@ -22,6 +22,13 @@ export default {
         entry: {
             type: Object,
             required: true
+        }
+    },
+    computed: {
+        shortText() {
+            return ( this.entry.text.length > 130 )
+                ? this.entry.text.substring(0, 130) + '...'
+                : this.entry.text
         }
     }
 }
