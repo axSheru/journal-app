@@ -18,7 +18,12 @@
 
 <script>
 export default {
-
+    props: {
+        entry: {
+            type: Object,
+            required: true
+        }
+    }
 }
 </script>
 
