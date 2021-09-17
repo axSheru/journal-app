@@ -30,7 +30,8 @@
         class="img-thumbnail"
     >
   </template>
-  <Fab 
+  <Fab
+    @on:click="saveEntry"
     icon="fa-save"
   />
 </template>
@@ -76,6 +77,9 @@ export default {
             const entry = this.getEntriesById( this.id )
             if( !entry ) return this.$router.push({ name: 'no-entry' })
             this.entry = entry
+        },
+        async saveEntry() {
+            console.log('SAVE ENTRY')
         }
     },
     created() {
