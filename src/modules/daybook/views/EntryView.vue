@@ -108,6 +108,8 @@ export default {
         async onDeleteEntry() {
 
             await this.deleteEntry( this.entry.id )
+
+            this.$router.push({ name: 'no-entry' })
         }
     },
     created() {
