@@ -91,7 +91,13 @@ export default {
             this.entry = entry
         },
         async saveEntry() {
-            this.updateEntry(this.entry)
+
+            if ( this.entry.id ) {
+                //Actualizar
+                this.updateEntry(this.entry)
+            } else {
+                console.log('Post nueva entrada.')
+            }
         }
     },
     created() {
