@@ -73,7 +73,7 @@ export default {
         Fab: defineAsyncComponent( () => import('../components/Fab.vue') )
     },
     methods: {
-        ...mapActions('journal', ['updateEntry']),
+        ...mapActions('journal', ['updateEntry', 'createEntry']),
         loadEntry() {
 
             let entry;
@@ -96,7 +96,9 @@ export default {
                 //Actualizar
                 this.updateEntry(this.entry)
             } else {
-                console.log('Post nueva entrada.')
+                const id = await this.createEntry(this.entry)
+
+                
             }
         }
     },
