@@ -23,3 +23,12 @@ export const addEntry = ( state, entry ) => {
 
     return entry.id
 }
+
+export const deleteEntry = ( state, id ) => {
+    
+    /* const idx = state.entries.map( e => e.id ).indexOf( id )
+    state.entries.splice( idx, 1 ) *///Mi solución.
+
+    state.entries = state.entries.filter( entry => entry.id !== id )
+
+}
