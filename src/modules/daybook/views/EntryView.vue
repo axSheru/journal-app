@@ -98,7 +98,7 @@ export default {
             } else {
                 const id = await this.createEntry(this.entry)
 
-                
+                this.$router.push({ name: 'entry', params: { id } })
             }
         }
     },
