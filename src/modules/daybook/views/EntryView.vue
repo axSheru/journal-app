@@ -43,6 +43,7 @@
 <script>
 import { defineAsyncComponent } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
+import Swal from 'sweetalert2'
 
 import getDayMontYear from '../helpers/getDayMonthYear'
 
@@ -96,6 +97,12 @@ export default {
         },
         async saveEntry() {
 
+            new Swal({
+                title: 'Espere por favor.',
+                allowOutsideClick: false
+            })
+            Swal.showLoading()
+
             if ( this.entry.id ) {
                 //Actualizar
                 this.updateEntry(this.entry)
@@ -104,6 +111,8 @@ export default {
 
                 this.$router.push({ name: 'entry', params: { id } })
             }
+
+            Swal.fire('Guardado.', 'Entrada registrada con éxito.', 'success')
         },
         async onDeleteEntry() {
 
