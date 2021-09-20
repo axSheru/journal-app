@@ -40,11 +40,13 @@
             v-model="entry.text">
             </textarea>
     </div>
-    <!-- <img
-        src="https://static1.abc.es/media/play/2020/12/22/mandalorian-kKfB--1200x630@abc.jpg"
+
+    <img
+        v-if="entry.picture && !localImage"
+        :src="entry.picture"
         alt="entry-picture"
         class="img-thumbnail"
-    > -->
+    >
 
     <img
         v-if="localImage"
@@ -65,6 +67,7 @@ import { mapGetters, mapActions } from 'vuex'
 import Swal from 'sweetalert2'
 
 import getDayMontYear from '../helpers/getDayMonthYear'
+import uploadImage from '../helpers/uploadImage'
 
 export default {
     props: {
@@ -124,6 +127,10 @@ export default {
             })
             Swal.showLoading()
 
+            const picture = await uploadImage( this.file )
+
+            this.entry.picture = picture
+
             if ( this.entry.id ) {
                 //Actualizar
                 this.updateEntry(this.entry)
@@ -133,7 +140,8 @@ export default {
                 this.$router.push({ name: 'entry', params: { id } })
             }
 
-            Swal.fire('Guardado.', 'Entrada registrada con éxito.', 'success    ')
+            this.file = null
+            Swal.fire('Guardado.', 'Entrada registrada con éxito.', 'success')
         },
         async onDeleteEntry() {
 
