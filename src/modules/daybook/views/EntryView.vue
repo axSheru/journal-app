@@ -11,6 +11,9 @@
             <input
               type="file"
               @change="onSelectedImage"
+              ref="imageSelector"
+              v-show="false"
+              accept="image/png, image/jpeg"
             >
 
             <button
@@ -21,7 +24,10 @@
                 Borrar
                 <i class="fa fa-trash-alt"></i>
             </button>
-            <button class="btn btn-primary">
+            <button
+              class="btn btn-primary"
+              @click="onSelectImage"
+            >
                 Subir foto
                 <i class="fa fa-upload"></i>
             </button>
@@ -170,6 +176,9 @@ export default {
             fr.onload = () => this.localImage = fr.result
             fr.readAsDataURL( file )
 
+        },
+        onSelectImage() {
+            this.$refs.imageSelector.click()
         }
     },
     created() {
