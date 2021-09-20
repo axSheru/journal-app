@@ -7,6 +7,12 @@
             <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
         </div>
         <div>
+
+            <input
+              type="file"
+              @change="onSelectedImage"
+            >
+
             <button
               v-if="entry.id"
               class="btn btn-danger mx-2"
@@ -28,8 +34,15 @@
             v-model="entry.text">
             </textarea>
     </div>
-    <img
+    <!-- <img
         src="https://static1.abc.es/media/play/2020/12/22/mandalorian-kKfB--1200x630@abc.jpg"
+        alt="entry-picture"
+        class="img-thumbnail"
+    > -->
+
+    <img
+        v-if="localImage"
+        :src="localImage"
         alt="entry-picture"
         class="img-thumbnail"
     >
@@ -71,7 +84,9 @@ export default {
     },
     data() {
         return {
-            entry: null
+            entry: null,
+            localImage: null,
+            file: null
         }
     },
     components: {
@@ -138,6 +153,22 @@ export default {
 
                 Swal.fire('Eliminado.', '', 'success')
             }
+
+        },
+        onSelectedImage( event ) {
+            const file = event.target.files[0]
+
+            if( !file ) {
+                this.localImage = null
+                this.file = null
+                return
+            }
+
+            this.file = file
+
+            const fr = new FileReader()
+            fr.onload = () => this.localImage = fr.result
+            fr.readAsDataURL( file )
 
         }
     },
