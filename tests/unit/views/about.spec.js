@@ -13,4 +13,12 @@ describe('Pruebas en el About view.', () => {
         expect( wrapper.html() ).toMatchSnapshot()
     })
 
+    test('Debe de renderizar un elemento con la clase about.', () => {
+
+        const classAbout = wrapper.find('.about')
+        
+        expect( classAbout ).toBeTruthy()
+
+    })
+
 })
