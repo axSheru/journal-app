@@ -27,5 +27,14 @@ describe('Pruebas en el FAB component.', () => {
 
     })
     
+    test('Debe de emitir el evento on:click cuando se hace click.', () => {
+        
+        const wrapper = shallowMount( Fab )
+
+        wrapper.find('button').trigger('click')
+
+        expect( wrapper.emitted('on:click') ).toHaveLength(1)
+
+    })
 
 })
