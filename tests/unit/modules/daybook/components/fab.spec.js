@@ -12,6 +12,20 @@ describe('Pruebas en el FAB component.', () => {
         expect( iTag.classes('fa-plus') ).toBeTruthy()
 
     })
+
+    test('Debe de mostrar el ícono por argumento: fa-circle', () => {
+        
+        const wrapper = shallowMount( Fab, {
+            props: {
+                icon: 'fa-circle'
+            }
+        })        
+
+        const iTag = wrapper.find('i')
+
+        expect( iTag.classes('fa-circle') ).toBeTruthy()
+
+    })
     
 
 })
