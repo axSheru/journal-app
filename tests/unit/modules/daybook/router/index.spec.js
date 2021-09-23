@@ -2,7 +2,7 @@ import daybookRouter from '@/modules/daybook/router'
 
 describe('Pruebas en el router module del daybook.', () => {
     
-    test('El router debe de tener esta configuración.', async () => {
+    test('El router debe de tener esta configuración.', () => {
         
         expect( daybookRouter ).toMatchObject({
             name: 'daybook',
@@ -22,6 +22,10 @@ describe('Pruebas en el router module del daybook.', () => {
             ]
         })
 
+    })
+
+    test('Debe de comprobar que las rutas te redirigen a los componentes esperados.', async () => {
+        
         //expect( (await daybookRouter.children[0].component()).default.name ).toBe('NoEntrySelected')
         //expect( (await daybookRouter.children[1].component()).default.name ).toBe('EntryView')
 
