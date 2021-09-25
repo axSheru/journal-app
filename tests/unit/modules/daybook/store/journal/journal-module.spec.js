@@ -39,6 +39,26 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( store.state.journal.isLoading ).toBeFalsy()
 
     })
+
+    test('mutation: updateEntry', () => {
+        
+        const store = createVuexStore( journalState )
+
+        const updatedEntry = {
+            id: '-MjrZSR1hwEC8mfMROiA',
+            date: 1631946119673,
+            picture: "https://res.cloudinary.com/axsheru/image/upload/v1632117386/bchmkui2wgfjnqob7ahb.jpg",
+            text: 'Hola mundo desde pruebas.'
+        }
+
+        store.commit( 'journal/updateEntry', updatedEntry )
+
+        const storeEntries = store.state.journal.entries
+
+        expect( storeEntries.length ).toBe( 2 )
+        expect( storeEntries.find( e => e.id === updatedEntry.id ) ).toEqual(updatedEntry)
+
+    })
     
     
 })
