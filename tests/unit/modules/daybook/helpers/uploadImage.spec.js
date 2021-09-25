@@ -11,7 +11,7 @@ cloudinary.config({
 
 describe('Pruebas sobre el helper uploadImage', () => {
 
-    test('Debe de cargar un archivo y retornar el URL.', async() => {
+    test('Debe de cargar un archivo y retornar el URL.', async( done ) => {
         
         const { data } = await axios.get('https://res.cloudinary.com/axsheru/image/upload/v1632117386/bchmkui2wgfjnqob7ahb.jpg', {
             responseType: 'arraybuffer'
@@ -22,6 +22,14 @@ describe('Pruebas sobre el helper uploadImage', () => {
         const url = await uploadImage( file )
 
         expect( typeof url ).toBe('string')
+
+        //Se toma el ID.
+        const segments = url.split('/')
+        const imageId = segments[ segments.length - 1 ].replace('.jpg', '')
+        
+        cloudinary.v2.api.delete_resources( imageId, {}, () => {
+            done()
+        })
 
     })
     
