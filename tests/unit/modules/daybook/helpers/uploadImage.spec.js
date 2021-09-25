@@ -1,5 +1,13 @@
-import uploadImage from '@/modules/daybook/helpers/uploadImage'
+import cloudinary from 'cloudinary'
 import axios from 'axios'
+
+import uploadImage from '@/modules/daybook/helpers/uploadImage'
+
+cloudinary.config({
+    cloud_name: 'axsheru',
+    api_key: '134181768662663',
+    api_secret: '9n7dq_xjHebzAB9Ocl-ACn4Xhp0'
+})
 
 describe('Pruebas sobre el helper uploadImage', () => {
 
