@@ -116,5 +116,29 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( store.state.journal.entries.length ).toBe(2)
 
     })
+
+    test('actions: updateEntry', async() => {
+        
+        const store = createVuexStore( journalState )
+
+        const updatedEntry = {
+            id: '-MjrZSR1hwEC8mfMROiA',
+            date: 1631946119673,
+            text: "The mandalorian caughts the Mythrol.",
+            otroCampo: true,
+            otromas: { a: 1 }
+        }
+
+        await store.dispatch('journal/updateEntry', updatedEntry)
+
+        expect( store.state.journal.entries.length ).toBe(2)
+        expect( store.state.journal.entries.find( e => e.id === updatedEntry.id ) ).toEqual({
+            id: '-MjrZSR1hwEC8mfMROiA',
+            date: 1631946119673,
+            text: "The mandalorian caughts the Mythrol.",
+        })
+
+    })
+    
     
 })
