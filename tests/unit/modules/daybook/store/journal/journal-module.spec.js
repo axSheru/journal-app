@@ -59,6 +59,23 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( storeEntries.find( e => e.id === updatedEntry.id ) ).toEqual(updatedEntry)
 
     })
+
+    test('mutation: addEntry, delteEntry', () => {
+
+        //addEntry
+        
+        const store = createVuexStore( journalState )
+
+        const newEntry = { id: 'ABC-123', text: 'Hola mundo.' }
+
+        store.commit( 'journal/addEntry', newEntry )
+
+        const storeEntries = store.state.journal.entries
+
+        expect( storeEntries.length ).toBe( 3 )
+        expect( storeEntries.find( e => e.id === newEntry.id ) ).toEqual( newEntry )
+
+    })
     
     
 })
