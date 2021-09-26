@@ -99,6 +99,10 @@ describe('Vuex - Pruebas en el Journal Module', () => {
 
         expect( store.getters['journal/getEntriesByTerm']('frogs') ).toEqual([ entry2 ])
 
+        //getEntriesById
+
+        expect( store.getters['journal/getEntriesById']( entry1.id ) ).toEqual( entry1 )
+
     })
     
 })
