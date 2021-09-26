@@ -75,6 +75,13 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( storeEntries.length ).toBe( 3 )
         expect( storeEntries.find( e => e.id === newEntry.id ) ).toEqual( newEntry )
 
+        //deleteEntry
+
+        store.commit( 'journal/deleteEntry', newEntry.id )
+
+        expect( store.state.journal.entries.length ).toBe( 2 )
+        expect( store.state.journal.entries.find( e => e.id === newEntry.id ) ).toBeFalsy()
+
     })
     
     
