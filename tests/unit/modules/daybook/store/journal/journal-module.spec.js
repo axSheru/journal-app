@@ -140,5 +140,20 @@ describe('Vuex - Pruebas en el Journal Module', () => {
 
     })
     
+    test('actions: createEntry, deleteEntry', async() => {
+        
+        //addEntry
+
+        const store = createVuexStore( journalState )
+
+        const newEntry = { date: 1631946119673, text: 'Nueva entrada desde las pruebas.' }
+
+        const id = await store.dispatch('journal/createEntry', newEntry)
+
+        expect( typeof id ).toBe( 'string')
+
+        expect( store.state.journal.entries.find( e => e.id === id ) ).toBeTruthy()
+
+    })
     
 })
