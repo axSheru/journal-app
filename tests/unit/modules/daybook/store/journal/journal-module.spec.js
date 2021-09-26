@@ -153,6 +153,12 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         expect( typeof id ).toBe( 'string')
 
         expect( store.state.journal.entries.find( e => e.id === id ) ).toBeTruthy()
+        
+        //deleteEntry
+        
+        await store.dispatch('journal/deleteEntry', id)
+        
+        expect( store.state.journal.entries.find( e => e.id === id ) ).toBeFalsy()
 
     })
     
