@@ -14,7 +14,7 @@ const createVuexStore = ( initialState ) =>
 
 describe('Vuex - Pruebas en el Journal Module', () => {
 
-    //Básicas.
+    //Básicas. =========================================================================================
     test('Este es el estado inicial; Debe de tener el siguiente state.', () => {
 
         const store = createVuexStore( journalState )
@@ -25,7 +25,7 @@ describe('Vuex - Pruebas en el Journal Module', () => {
         
     })
 
-    //Mutations.
+    //Mutations. =========================================================================================
     test('mutation: setEntries', () => {
         
         const store = createVuexStore({ isLoading: true, entries: [] })
@@ -84,5 +84,21 @@ describe('Vuex - Pruebas en el Journal Module', () => {
 
     })
     
+    //Getters. =========================================================================================
+
+    test('getters: getEntriesByTerm, getEntriesById', () => {
+        
+        const store = createVuexStore( journalState )
+
+        const [ entry1, entry2 ] = journalState.entries
+
+        //getEntriesByTerm
+
+        expect( store.getters['journal/getEntriesByTerm']('').length ).toBe(2)
+        expect( store.getters['journal/getEntriesByTerm']('frogs').length ).toBe(1)
+
+        expect( store.getters['journal/getEntriesByTerm']('frogs') ).toEqual([ entry2 ])
+
+    })
     
 })
