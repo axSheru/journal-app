@@ -28,5 +28,14 @@ describe('Pruebas en el entry component.', () => {
         expect( wrapper.html() ).toMatchSnapshot()
 
     })
+
+    test('Debe de redireccionar al hacer click en el entry-container.', () => {
+        
+        wrapper.find('.entry-container').trigger('click')
+
+        expect(mockRouter.push).toHaveBeenCalled()
+        expect(mockRouter.push).toHaveBeenCalledWith({ name: 'entry', params: { id: journalState.entries[0].id } })
+
+    })
     
 })
