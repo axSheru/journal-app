@@ -22,5 +22,11 @@ describe('Pruebas en el entry component.', () => {
             }
         })
     });
+
+    test('Debe de hacer match con el snapshot.', () => {
+        
+        expect( wrapper.html() ).toMatchSnapshot()
+
+    })
     
 })
