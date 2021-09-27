@@ -37,5 +37,13 @@ describe('Pruebas en el entry component.', () => {
         expect(mockRouter.push).toHaveBeenCalledWith({ name: 'entry', params: { id: journalState.entries[0].id } })
 
     })
+
+    test('Pruebas en las propiedades computadas.', () => {
+        
+        expect(wrapper.vm.day).toBe(18)
+        expect(wrapper.vm.month).toBe('Septiembre')
+        expect(wrapper.vm.yearDay).toBe('2021, Sábado')
+
+    })
     
 })
