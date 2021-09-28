@@ -74,11 +74,11 @@ describe('Pruebas en el EntryView', () => {
 
     })
     
-    test('Debe de borrar la entrada y salir.', async() => {
+    test('Debe de borrar la entrada y salir.', (done) => {
 
         Swal.fire.mockReturnValueOnce( Promise.resolve({ isConfirmed: true }) )
         
-        await wrapper.find('.btn-danger').trigger('click')
+        wrapper.find('.btn-danger').trigger('click')
 
         expect( Swal.fire ).toHaveBeenCalledWith({
             title: '¿Está seguro?',
@@ -87,8 +87,13 @@ describe('Pruebas en el EntryView', () => {
             confirmButtonText: 'Sí, estoy seguro.'
         })
 
-        expect( store.dispatch ).toHaveBeenCalledWith('journal/deleteEntry', '-MjrZSR1hwEC8mfMROiA')
-        expect( mockRouter.push ).toHaveBeenCalled()
+        setTimeout(() => {
+            
+            expect( store.dispatch ).toHaveBeenCalledWith('journal/deleteEntry', '-MjrZSR1hwEC8mfMROiA')
+            expect( mockRouter.push ).toHaveBeenCalled()
+            done()
+
+        }, 1)
 
     })
     
